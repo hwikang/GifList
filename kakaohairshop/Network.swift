@@ -9,14 +9,13 @@ import Foundation
 
 import Foundation
 
-let APIKEY = "ITnII4MdYK5Fn5lKBgOnsk92nY7SYo2g"
 
 
 class Network {
     
-     static func fetchTrends() async throws -> [Gif] {
+    static func fetchTrends(offset: Int) async throws -> [Gif] {
          print("call fetch")
-        guard let url = URL(string: "https://api.giphy.com/v1/gifs/trending?api_key=\(APIKEY)") else {
+        guard let url = URL(string: "https://api.giphy.com/v1/gifs/trending?api_key=\(APIKEY)&offset=\(offset)") else {
             throw NetworkError.invalidURL }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -34,28 +33,6 @@ class Network {
          print("gif \(gif.data.count)")
          return gif.data
          
-//        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
-////            print("data \(datas)")
-////            print("response \(response)")
-//            if let error = error {
-//                print("Error fetch Trend", error.localizedDescription)
-//            }
-//
-//            if let data = data {
-//                do {
-//                    let decoder = JSONDecoder()
-//                    let gif = try decoder.decode(GifData.self, from: data)
-//                    print("gif \(gif.data.count)")
-//                } catch let error {
-//                    print(error)
-//                }
-//
-//            }
-//
-//
-//        }
-//
-//         dataTask.resume()
     }
     
 }

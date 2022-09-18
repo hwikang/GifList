@@ -16,9 +16,14 @@ class GifCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
          super.init(frame: frame)
-        self.backgroundColor = .red
-         addSubview(imageView)
+        self.contentView.addSubview(imageView)
          setUI()
+    }
+    
+    override func prepareForReuse() {
+        print("prepareForReuse")
+        imageView.image = UIImage(named: "placeholder")
+
     }
     
     private func setUI() {
@@ -27,12 +32,18 @@ class GifCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setConfig(image: UIImage) {
-        imageView.image = image
+    
+    func setConfig(urlString: String) {
+        DispatchQueue.global().async {
+            let image = UIImage.gifImageWithURL(urlString)
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
           fatalError("init(coder:) not implemented")
-      }
+    }
   
 }

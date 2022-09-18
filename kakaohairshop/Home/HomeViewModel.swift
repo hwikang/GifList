@@ -11,7 +11,8 @@ import RxCocoa
 class HomeViewModel {
     
     private let trendList = PublishRelay<[Gif]>()
-    
+    private var offset = 0
+    private var dataSource: [Gif] = []
     struct Input {
         
     }
@@ -27,15 +28,26 @@ class HomeViewModel {
     func fetchTrends() {
         
         
-        
         Task {
             
-            
-            let gifs = try await Network.fetchTrends()
-//            print(gifs)
-            
-            trendList.accept(gifs)
+            let gifs = try await Network.fetchTrends(offset: offset)
+            dataSource.append(contentsOf: gifs)
+            trendList.accept(dataSource)
+            offset += 1
         }
 
     }
+    
+    func getDataCount() -> Int {
+        return dataSource.count
+    }
+    
+    func getImageSize(index: Int) -> CGSize {
+        guard let image = dataSource[index].images?.preview,
+              let width = image.width,
+              let height = image.height else { return .zero}
+        
+        return CGSize(width: width, height: height)
+    }
+  
 }

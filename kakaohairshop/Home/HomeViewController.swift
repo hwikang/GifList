@@ -11,13 +11,21 @@ import RxSwift
 class HomeViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
+    
+    // MARK: - UI
     lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+        let layout = DynamicHeightCollectionViewFlowLayout()
+        layout.delegate = self
+        layout.minimumLineSpacing = CGFloats.collectionViewSpacing.rawValue
+        layout.minimumInteritemSpacing = CGFloats.collectionViewSpacing.rawValue
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .blue
+        
+//        collectionView.backgroundColor = .white
         return collectionView
     }()
-    
+        
     private let viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +36,7 @@ class HomeViewController: UIViewController {
         
         setProperty()
         setUI()
+        setEvent()
     }
     
     private func setProperty() {
@@ -50,35 +59,58 @@ class HomeViewController: UIViewController {
     private func bindViewModel() {
         let output = viewModel.transform(input: HomeViewModel.Input())
         output.trends.bind(to: collectionView.rx.items(cellIdentifier: "GifCell", cellType: GifCollectionViewCell.self)) { row,gif,cell in
-            
-            print(gif.images?.original?.url)
-//            cell.setConfig(image: UIImage)
+            if let url = gif.images?.preview?.url{
+                print("setConfig \(row)")
+
+                cell.setConfig(urlString: url)
+                cell.prepareForReuse()
+            }
             
         }
         .disposed(by: disposeBag)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setEvent() {
+        
+        collectionView.rx.prefetchItems
+            .compactMap({ indexPath in
+                indexPath.last?.row
+            })
+            .bind {[weak self] row in
+                guard let self = self else { return }
+                if row > self.viewModel.getDataCount() - 2 {
+                    self.viewModel.fetchTrends()
+                }
+        }.disposed(by: disposeBag)
     }
-    */
-
 }
 
 
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width
-        let itemsPerRow: CGFloat = 2
-        let cellWidth = (width - 10) / itemsPerRow
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout , DynamicHeightLayoutDelegate{
+    func collectionView(
+          _ collectionView: UICollectionView,
+          sizeForPhotoAtIndexPath indexPath:IndexPath) -> CGSize {
+              let imageSize = viewModel.getImageSize(index: indexPath.row)
 
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
+              print(imageSize)
+//              guard let cell = collectionView.cellForItem(at: indexPath) as? GifCollectionViewCell else { return 0 }
+//              print("cell \(cell)")
+//              guard let image = cell.imageView.image else {return 0}
+//              print("Height \(image.size.height)")
+              return imageSize
+      }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let imageSize = viewModel.getImageSize(index: indexPath.row)
+//        let width = collectionView.frame.width
+//        let itemsPerRow: CGFloat = 2
+//        let cellWidth = (width - CGFloats.collectionViewSpacing.rawValue) / itemsPerRow
+//
+//        let multiply = cellWidth / imageSize.width
+//        let cellHeight = imageSize.height * multiply
+//        print("cellHeight \(cellHeight)")
+//        return CGSize(width: cellWidth, height: cellHeight)
+//    }
+    
 }

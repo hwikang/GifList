@@ -12,3 +12,4 @@ enum Strings: String {
     case homeTabTitle = "홈"
     case searchTabTitle = "검색"
 }
+

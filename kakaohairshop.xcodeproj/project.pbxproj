@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3315CDAC4BF56EEBD4B82982 /* Pods_kakaohairshop_kakaohairshopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB800B038B06573B1D00B6D1 /* Pods_kakaohairshop_kakaohairshopUITests.framework */; };
 		568CD955A3559B565E800F5E /* Pods_kakaohairshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5885C0BC5022975C964D10 /* Pods_kakaohairshop.framework */; };
+		BFA8BB9A28D703920046A9FE /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8BB9928D703920046A9FE /* UIImage.swift */; };
+		BFA8BB9D28D70B590046A9FE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8BB9C28D70B590046A9FE /* Constant.swift */; };
+		BFA8BBA028D719F80046A9FE /* DynamicHeightCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8BB9F28D719F80046A9FE /* DynamicHeightCollectionViewFlowLayout.swift */; };
+		BFA8BBA228D71C330046A9FE /* CGFloats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8BBA128D71C330046A9FE /* CGFloats.swift */; };
 		BFF1011928D58C2800FCA7FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1011828D58C2800FCA7FC /* AppDelegate.swift */; };
 		BFF1011B28D58C2800FCA7FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1011A28D58C2800FCA7FC /* SceneDelegate.swift */; };
 		BFF1011D28D58C2800FCA7FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF1011C28D58C2800FCA7FC /* ViewController.swift */; };
@@ -55,6 +59,10 @@
 		7C8DC1969ED68FF12106946D /* Pods-kakaohairshopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kakaohairshopTests.release.xcconfig"; path = "Target Support Files/Pods-kakaohairshopTests/Pods-kakaohairshopTests.release.xcconfig"; sourceTree = "<group>"; };
 		88A6A4FD3F3FA4D5ED6EFBD8 /* Pods-kakaohairshop-kakaohairshopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kakaohairshop-kakaohairshopUITests.release.xcconfig"; path = "Target Support Files/Pods-kakaohairshop-kakaohairshopUITests/Pods-kakaohairshop-kakaohairshopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A851E6D8CC061C155867A811 /* Pods-kakaohairshopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kakaohairshopTests.debug.xcconfig"; path = "Target Support Files/Pods-kakaohairshopTests/Pods-kakaohairshopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BFA8BB9928D703920046A9FE /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		BFA8BB9C28D70B590046A9FE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BFA8BB9F28D719F80046A9FE /* DynamicHeightCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		BFA8BBA128D71C330046A9FE /* CGFloats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloats.swift; sourceTree = "<group>"; };
 		BFF1011528D58C2800FCA7FC /* kakaohairshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kakaohairshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF1011828D58C2800FCA7FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF1011A28D58C2800FCA7FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +127,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BFA8BB9B28D70B500046A9FE /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				BFA8BB9C28D70B590046A9FE /* Constant.swift */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
+		BFA8BB9E28D719DC0046A9FE /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				BFA8BB9F28D719F80046A9FE /* DynamicHeightCollectionViewFlowLayout.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		BFF1010C28D58C2800FCA7FC = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +172,7 @@
 				BFF1011A28D58C2800FCA7FC /* SceneDelegate.swift */,
 				BFF1011C28D58C2800FCA7FC /* ViewController.swift */,
 				BFF1015828D59E7500FCA7FC /* ViewModelType.swift */,
+				BFA8BB9B28D70B500046A9FE /* Const */,
 				BFF1016028D5AF3300FCA7FC /* Extension */,
 				BFF1015D28D5A60F00FCA7FC /* Component */,
 				BFF1015228D5990600FCA7FC /* Enum */,
@@ -200,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF1015328D5993900FCA7FC /* Strings.swift */,
+				BFA8BBA128D71C330046A9FE /* CGFloats.swift */,
 				BFF1015A28D5A1A900FCA7FC /* Error */,
 			);
 			path = Enum;
@@ -226,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				BFF1015E28D5A63300FCA7FC /* GifCollectionViewCell.swift */,
+				BFA8BB9E28D719DC0046A9FE /* CollectionView */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -233,6 +260,7 @@
 		BFF1016028D5AF3300FCA7FC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BFA8BB9928D703920046A9FE /* UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -489,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA8BBA028D719F80046A9FE /* DynamicHeightCollectionViewFlowLayout.swift in Sources */,
 				BFF1011D28D58C2800FCA7FC /* ViewController.swift in Sources */,
 				BFF1015728D59DD700FCA7FC /* HomeViewModel.swift in Sources */,
 				BFF1015128D598D200FCA7FC /* SearchViewController.swift in Sources */,
@@ -496,10 +525,13 @@
 				BFF1015428D5993900FCA7FC /* Strings.swift in Sources */,
 				BFF1011928D58C2800FCA7FC /* AppDelegate.swift in Sources */,
 				BFF1014A28D58C8B00FCA7FC /* Network.swift in Sources */,
+				BFA8BB9D28D70B590046A9FE /* Constant.swift in Sources */,
 				BFF1014F28D5952A00FCA7FC /* HomeViewController.swift in Sources */,
 				BFF1011B28D58C2800FCA7FC /* SceneDelegate.swift in Sources */,
 				BFF1015928D59E7500FCA7FC /* ViewModelType.swift in Sources */,
+				BFA8BBA228D71C330046A9FE /* CGFloats.swift in Sources */,
 				BFF1015C28D5A1B200FCA7FC /* NetworkError.swift in Sources */,
+				BFA8BB9A28D703920046A9FE /* UIImage.swift in Sources */,
 				BFF1014D28D58CE300FCA7FC /* Gif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
