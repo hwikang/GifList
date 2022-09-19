@@ -5,7 +5,7 @@
 //  Created by 슈퍼 on 2022/09/18.
 //
 
-import Foundation
+import UIKit
 
 
 enum CGFloats: CGFloat {

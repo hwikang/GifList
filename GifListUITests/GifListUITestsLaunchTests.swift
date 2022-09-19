@@ -1,13 +1,13 @@
 //
-//  kakaohairshopUITestsLaunchTests.swift
-//  kakaohairshopUITests
+//  GifListUITestsLaunchTests.swift
+//  GifListUITests
 //
-//  Created by 슈퍼 on 2022/09/17.
+//  Created by 슈퍼 on 2022/09/19.
 //
 
 import XCTest
 
-final class kakaohairshopUITestsLaunchTests: XCTestCase {
+class GifListUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,14 +1,14 @@
 //
-//  kakaohairshopTests.swift
-//  kakaohairshopTests
+//  GifListTests.swift
+//  GifListTests
 //
-//  Created by 슈퍼 on 2022/09/17.
+//  Created by 슈퍼 on 2022/09/19.
 //
 
 import XCTest
-@testable import kakaohairshop
+@testable import GifList
 
-final class kakaohairshopTests: XCTestCase {
+class GifListTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

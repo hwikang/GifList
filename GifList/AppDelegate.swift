@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  kakaohairshop
+//  GifList
 //
-//  Created by 슈퍼 on 2022/09/17.
+//  Created by 슈퍼 on 2022/09/19.
 //
 
 import UIKit
