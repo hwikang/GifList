@@ -1,13 +1,13 @@
 //
-//  kakaohairshopUITests.swift
-//  kakaohairshopUITests
+//  GifListUITests.swift
+//  GifListUITests
 //
-//  Created by 슈퍼 on 2022/09/17.
+//  Created by Hwi kang on 2022/09/19.
 //
 
 import XCTest
 
-final class kakaohairshopUITests: XCTestCase {
+class GifListUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,11 +27,12 @@ final class kakaohairshopUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
+        // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
