@@ -32,6 +32,8 @@ class HomeViewModel {
             
             let gifs = try await Network.fetchTrends(offset: offset)
             dataSource.append(contentsOf: gifs)
+            print("fetch more \(dataSource.count)")
+
             trendList.accept(dataSource)
             offset += 1
         }

@@ -60,8 +60,6 @@ class HomeViewController: UIViewController {
         let output = viewModel.transform(input: HomeViewModel.Input())
         output.trends.bind(to: collectionView.rx.items(cellIdentifier: "GifCell", cellType: GifCollectionViewCell.self)) { row,gif,cell in
             if let url = gif.images?.preview?.url{
-                print("setConfig \(row)")
-
                 cell.setConfig(urlString: url)
                 cell.prepareForReuse()
             }
@@ -76,11 +74,14 @@ class HomeViewController: UIViewController {
             .compactMap({ indexPath in
                 indexPath.last?.row
             })
+            .filter({ row in
+                row >= self.viewModel.getDataCount() - 1
+            })
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind {[weak self] row in
                 guard let self = self else { return }
-                if row > self.viewModel.getDataCount() - 2 {
-                    self.viewModel.fetchTrends()
-                }
+                print("fetch")
+                self.viewModel.fetchTrends()
         }.disposed(by: disposeBag)
     }
 }
@@ -92,25 +93,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
           _ collectionView: UICollectionView,
           sizeForPhotoAtIndexPath indexPath:IndexPath) -> CGSize {
               let imageSize = viewModel.getImageSize(index: indexPath.row)
-
-              print(imageSize)
-//              guard let cell = collectionView.cellForItem(at: indexPath) as? GifCollectionViewCell else { return 0 }
-//              print("cell \(cell)")
-//              guard let image = cell.imageView.image else {return 0}
-//              print("Height \(image.size.height)")
               return imageSize
       }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let imageSize = viewModel.getImageSize(index: indexPath.row)
-//        let width = collectionView.frame.width
-//        let itemsPerRow: CGFloat = 2
-//        let cellWidth = (width - CGFloats.collectionViewSpacing.rawValue) / itemsPerRow
-//
-//        let multiply = cellWidth / imageSize.width
-//        let cellHeight = imageSize.height * multiply
-//        print("cellHeight \(cellHeight)")
-//        return CGSize(width: cellWidth, height: cellHeight)
-//    }
     
 }

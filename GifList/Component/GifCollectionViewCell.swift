@@ -21,7 +21,6 @@ class GifCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        print("prepareForReuse")
         imageView.image = UIImage(named: "placeholder")
 
     }

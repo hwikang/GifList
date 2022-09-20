@@ -28,13 +28,15 @@ class DynamicHeightCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return collectionView.bounds.width - inset.left - inset.right
     }
     
+  
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }
     
     override func prepare() {
-        print("call prepare")
-        guard cache.isEmpty, let collectionView = collectionView else { return }
+        guard let collectionView = collectionView
+                ,collectionView.numberOfItems(inSection: 0) != cache.count
+        else { return }
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
         var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)

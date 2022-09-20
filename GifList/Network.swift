@@ -17,6 +17,7 @@ class Network {
          print("call fetch")
         guard let url = URL(string: "https://api.giphy.com/v1/gifs/trending?api_key=\(APIKEY)&offset=\(offset)") else {
             throw NetworkError.invalidURL }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
          print("request \(request)")
