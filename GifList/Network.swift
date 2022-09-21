@@ -14,7 +14,6 @@ import Foundation
 class Network {
     
     static func fetchTrends(offset: Int) async throws -> [Gif] {
-         print("call fetch")
         guard let url = URL(string: "https://api.giphy.com/v1/gifs/trending?api_key=\(APIKEY)&offset=\(offset)") else {
             throw NetworkError.invalidURL }
         
@@ -36,4 +35,13 @@ class Network {
          
     }
     
+    static func search(_ text: String, offset: Int) throws {
+        guard let url = URL(string: "https://api.giphy.com/v1/gifs/search?api_key=\(APIKEY)&q=\(text)&offset=\(offset)") else {
+            throw NetworkError.invalidURL }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+         print("request \(request)")
+
+    }
 }

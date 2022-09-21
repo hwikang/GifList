@@ -9,9 +9,9 @@ import UIKit
 
 
 struct ComponentSize {
-    static let collectionViewSpacing:CGFloat = 10
+    static let collectionViewSpacing:CGFloat = 5
     static let searchTextFieldHeight:CGFloat = 40
-    static let searchTextFieldPadding:CGFloat = 5
+    static let searchTextFieldPadding:CGFloat = 10
     static let searchTextFieldClearButtonWidth:CGFloat = 30
-    static let searchTextFieldIconWidth:CGFloat = 30
+    static let searchTextFieldIconWidth:CGFloat = 20
 }

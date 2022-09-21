@@ -7,10 +7,13 @@
 
 import UIKit
 import RxSwift
+import RxRelay
 
 class SearchViewController: UIViewController {
 
     private var disposeBag = DisposeBag()
+    private var searchText = PublishRelay<String>()
+    
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.insertSegment(withTitle: Strings.searchTabTitle.rawValue, at: 0, animated: true)
@@ -32,8 +35,8 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .red
         return view
     }()
-    lazy var settingView: SearchView = {
-        let view = SearchView()
+    lazy var settingView: SettingView = {
+        let view = SettingView()
         view.backgroundColor = .blue
         return view
     }()
@@ -42,9 +45,17 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        bindView()
         bindViewModel()
     }
     
+    private func bindView() {
+        searchView.textField.rx.text.bind { [weak self] text in
+            if let text = text {
+                self?.searchText.accept(text)
+            }
+        }
+    }
     
     
     private func setUI() {
@@ -57,8 +68,10 @@ class SearchViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let input = SearchViewModel.Input(segmentedControlIndex: self.segmentedControl.rx.selectedSegmentIndex.asDriver())
+        let input = SearchViewModel.Input(segmentedControlIndex: self.segmentedControl.rx.selectedSegmentIndex.asDriver(),searchText: searchText.asDriver(onErrorJustReturn: ""))
         
+        
+      
         let output = searchViewModel.transform(input: input)
         output.segmentIndex.bind {[weak self] index in
             

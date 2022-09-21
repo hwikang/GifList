@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
-        
+       
     private let viewModel = HomeViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController {
 
 
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout , DynamicHeightLayoutDelegate{
+extension HomeViewController: UICollectionViewDelegate, DynamicHeightLayoutDelegate{
     func collectionView(
           _ collectionView: UICollectionView,
           sizeForPhotoAtIndexPath indexPath:IndexPath) -> CGSize {
