@@ -14,6 +14,10 @@ class SearchViewModel {
     //MARK: Property
     private let disposeBag = DisposeBag()
     let segmentIndex = BehaviorRelay<Int>(value: 0)
+    private let searchList = PublishRelay<[Gif]>()
+    private var offset = 0
+    private var dataSource: [Gif] = []
+    
     struct Input {
         var segmentedControlIndex: Driver<Int>
         var searchText: Driver<String>
@@ -21,6 +25,8 @@ class SearchViewModel {
     
     struct Output {
         var segmentIndex: Observable<Int>
+        var searchList: Observable<[Gif]>
+
     }
     
     func transform(input: Input) -> Output {
@@ -34,16 +40,14 @@ class SearchViewModel {
             print("text \(text)")
             self?.search(text)
         }.disposed(by: disposeBag)
-        return Output(segmentIndex: segmentIndex.asObservable())
+        return Output(segmentIndex: segmentIndex.asObservable(),searchList: searchList.asObservable())
     }
     
     func search(_ text: String) {
-       
-        
-        do {
-            try  Network.search(text, offset: 0)
-        } catch let error {
-            print(error)
+        Task {
+            
+            let gifs = try await Network.fetchTrends(offset: offset)
+            searchList.accept(gifs)
         }
     }
 }

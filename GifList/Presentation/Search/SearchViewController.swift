@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
             if let text = text {
                 self?.searchText.accept(text)
             }
-        }
+        }.disposed(by: disposeBag)
     }
     
     
