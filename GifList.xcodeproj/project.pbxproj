@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2ED75AAF23EC3346120352EA /* Pods_GifList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000ED14600233D4FDD418614 /* Pods_GifList.framework */; };
+		7B9E924F28DA7FDC00BCEA41 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9E924E28DA7FDC00BCEA41 /* DynamicHeightCollectionView.swift */; };
+		7B9E925228DA805F00BCEA41 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9E925128DA805F00BCEA41 /* SearchViewModel.swift */; };
 		BF1E8CD728D8A2AE00A27DA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8CD628D8A2AE00A27DA0 /* AppDelegate.swift */; };
 		BF1E8CD928D8A2AE00A27DA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8CD828D8A2AE00A27DA0 /* SceneDelegate.swift */; };
 		BF1E8CDB28D8A2AE00A27DA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8CDA28D8A2AE00A27DA0 /* ViewController.swift */; };
@@ -59,6 +61,8 @@
 		2272CCB6295DCB39F7D6AE1C /* Pods-GifListTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifListTests.debug.xcconfig"; path = "Target Support Files/Pods-GifListTests/Pods-GifListTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2F90852073F74F1D4BB3A29B /* Pods-GifList-GifListUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifList-GifListUITests.debug.xcconfig"; path = "Target Support Files/Pods-GifList-GifListUITests/Pods-GifList-GifListUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B2FD24803D51838EC6B16EA /* Pods-GifList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifList.debug.xcconfig"; path = "Target Support Files/Pods-GifList/Pods-GifList.debug.xcconfig"; sourceTree = "<group>"; };
+		7B9E924E28DA7FDC00BCEA41 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
+		7B9E925128DA805F00BCEA41 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7EC5DD184DAD4C653B294230 /* Pods-GifList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifList.release.xcconfig"; path = "Target Support Files/Pods-GifList/Pods-GifList.release.xcconfig"; sourceTree = "<group>"; };
 		BF1E8CD328D8A2AE00A27DA0 /* GifList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1E8CD628D8A2AE00A27DA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B9E925028DA804D00BCEA41 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BF1E8D2328D8A49400A27DA0 /* SearchViewController.swift */,
+				7B9E925128DA805F00BCEA41 /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		7DBB7433A0C0DAFD8068883C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +169,7 @@
 				BF1E8CD828D8A2AE00A27DA0 /* SceneDelegate.swift */,
 				BF1E8CDA28D8A2AE00A27DA0 /* ViewController.swift */,
 				BF1E8D2428D8A49400A27DA0 /* Network.swift */,
-				BF1E8D2328D8A49400A27DA0 /* SearchViewController.swift */,
+				7B9E925028DA804D00BCEA41 /* Search */,
 				BF1E8D2228D8A49400A27DA0 /* ViewModelType.swift */,
 				BF1E8D0828D8A48600A27DA0 /* Component */,
 				BF1E8D1328D8A48600A27DA0 /* Const */,
@@ -202,6 +215,7 @@
 			children = (
 				BF1E8D0928D8A48600A27DA0 /* CollectionView */,
 				BF1E8D0B28D8A48600A27DA0 /* GifCollectionViewCell.swift */,
+				7B9E924E28DA7FDC00BCEA41 /* DynamicHeightCollectionView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -515,6 +529,7 @@
 				BF1E8D1E28D8A48600A27DA0 /* UIImage.swift in Sources */,
 				BF1E8CDB28D8A2AE00A27DA0 /* ViewController.swift in Sources */,
 				BF1E8CD728D8A2AE00A27DA0 /* AppDelegate.swift in Sources */,
+				7B9E925228DA805F00BCEA41 /* SearchViewModel.swift in Sources */,
 				BF1E8D1A28D8A48600A27DA0 /* GifCollectionViewCell.swift in Sources */,
 				BF1E8D1C28D8A48600A27DA0 /* CGFloats.swift in Sources */,
 				BF1E8D2528D8A49400A27DA0 /* ViewModelType.swift in Sources */,
@@ -524,6 +539,7 @@
 				BF1E8D1F28D8A48600A27DA0 /* Constant.swift in Sources */,
 				BF1E8CD928D8A2AE00A27DA0 /* SceneDelegate.swift in Sources */,
 				BF1E8D2128D8A48600A27DA0 /* HomeViewController.swift in Sources */,
+				7B9E924F28DA7FDC00BCEA41 /* DynamicHeightCollectionView.swift in Sources */,
 				BF1E8D1B28D8A48600A27DA0 /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

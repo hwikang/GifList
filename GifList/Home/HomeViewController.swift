@@ -13,16 +13,11 @@ class HomeViewController: UIViewController {
     
     
     // MARK: - UI
-    lazy var collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-        let layout = DynamicHeightCollectionViewFlowLayout()
+    lazy var collectionView: UICollectionView = {        let layout = DynamicHeightCollectionViewFlowLayout()
         layout.delegate = self
         layout.minimumLineSpacing = CGFloats.collectionViewSpacing.rawValue
         layout.minimumInteritemSpacing = CGFloats.collectionViewSpacing.rawValue
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-//        collectionView.backgroundColor = .white
         return collectionView
     }()
         

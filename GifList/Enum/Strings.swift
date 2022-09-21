@@ -11,5 +11,6 @@ import Foundation
 enum Strings: String {
     case homeTabTitle = "홈"
     case searchTabTitle = "검색"
+    case searchSetting = "실험실"
 }
 
