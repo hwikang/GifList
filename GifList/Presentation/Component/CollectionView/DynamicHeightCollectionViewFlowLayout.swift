@@ -18,7 +18,7 @@ class DynamicHeightCollectionViewFlowLayout: UICollectionViewFlowLayout {
     var delegate : DynamicHeightLayoutDelegate?
     
     private let numberOfColumns = 2
-    private let collectionViewSpacing: CGFloat = CGFloats.collectionViewSpacing.rawValue
+    private let collectionViewSpacing: CGFloat = ComponentSize.collectionViewSpacing
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentHeight: CGFloat = 0
 
