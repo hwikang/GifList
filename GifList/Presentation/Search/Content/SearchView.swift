@@ -8,9 +8,16 @@
 import UIKit
 import RxSwift
 
+protocol SearchDataProtocol {
+    func getDataCount() -> Int
+    func getGif(index: Int) -> Gif
+    func searchMore()
+}
+
 class SearchView: UIView {
     private let disposeBag = DisposeBag()
 
+    
     lazy var textField: SearchTextField = {
         let textField = SearchTextField()
         textField.backgroundColor = .lightGray
@@ -23,11 +30,13 @@ class SearchView: UIView {
         layout.minimumLineSpacing = ComponentSize.collectionViewSpacing
         layout.minimumInteritemSpacing = ComponentSize.collectionViewSpacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .red
+//        collectionView.collectionViewLayout.
         return collectionView
     }()
-    
-    
+    public var searchDataDelegate: SearchDataProtocol?
     init() {
+
         super.init(frame: .zero)
 
         setProperty()
@@ -59,6 +68,24 @@ class SearchView: UIView {
         collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCell")
     }
     
+    private func setEvent() {
+        
+        collectionView.rx.prefetchItems
+            .compactMap({ indexPath in
+                indexPath.last?.row
+            })
+            .filter{[weak self] row in
+                guard let count = self?.searchDataDelegate?.getDataCount() else { return false }
+                print("Data count \(count)")
+                return row >= count - 1
+            }
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind {[weak self] row in
+                guard let self = self else { return }
+                print("search more")
+                self.searchDataDelegate?.searchMore()
+            }.disposed(by: disposeBag)
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -66,9 +93,22 @@ class SearchView: UIView {
 
 
 extension SearchView: UICollectionViewDelegate, DynamicHeightLayoutDelegate {
-    func collectionView(_ collectionView: UICollectionView, sizeForPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
-        .zero
+    func numberOfColumns() -> Int {
+        return 3
     }
     
+    func collectionView(_ collectionView: UICollectionView, sizeForPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
+        let gif = searchDataDelegate?.getGif(index: indexPath.row)
+        return getImageSize(images: gif?.images)
+        
+    }
     
+    private func getImageSize(images: Images?) -> CGSize {
+        guard let image = images?.preview,
+              let width = image.width,
+              let height = image.height else { return CGSize(width: 100, height: 100) }
+        return CGSize(width: width, height: height)
+
+    }
+
 }

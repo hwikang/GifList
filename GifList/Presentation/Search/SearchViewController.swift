@@ -26,15 +26,17 @@ class SearchViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.black
         ], for: .selected)
         control.selectedSegmentIndex = 0
-//        control.backgroundColor = .red
         return control
     }()
     
     lazy var searchView: SearchView = {
+        
         let view = SearchView()
-        view.backgroundColor = .red
+        view.searchDataDelegate = self
         return view
     }()
+    
+    
     lazy var settingView: SettingView = {
         let view = SettingView()
         view.backgroundColor = .blue
@@ -49,14 +51,6 @@ class SearchViewController: UIViewController {
         bindViewModel()
     }
     
-    private func bindView() {
-        searchView.textField.rx.text.bind { [weak self] text in
-            if let text = text {
-                self?.searchText.accept(text)
-            }
-        }.disposed(by: disposeBag)
-    }
-    
     
     private func setUI() {
         
@@ -66,25 +60,6 @@ class SearchViewController: UIViewController {
 
         setConstraint()
     }
-    
-    private func bindViewModel() {
-        let input = SearchViewModel.Input(segmentedControlIndex: self.segmentedControl.rx.selectedSegmentIndex.asDriver(),searchText: searchText.asDriver(onErrorJustReturn: ""))
-        
-        
-      
-        let output = searchViewModel.transform(input: input)
-        output.segmentIndex.bind {[weak self] index in
-            
-            if index == 0 {
-                self?.searchView.isHidden = false
-                self?.settingView.isHidden = true
-            }else {
-                self?.searchView.isHidden = true
-                self?.settingView.isHidden = false
-            }
-        }.disposed(by: disposeBag)
-    }
-    
     private func setConstraint() {
         segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -104,5 +79,57 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func bindView() {
+        searchView.textField.rx.text.bind { [weak self] text in
+            if let text = text {
+                self?.searchText.accept(text)
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    private func bindViewModel() {
+        let input = SearchViewModel.Input(segmentedControlIndex: self.segmentedControl.rx.selectedSegmentIndex.asDriver(),searchText: searchText.asDriver(onErrorJustReturn: ""))
+        
+        
+      
+        let output = searchViewModel.transform(input: input)
+        output.segmentIndex.bind {[weak self] index in
+            
+            if index == 0 {
+                self?.searchView.isHidden = false
+                self?.settingView.isHidden = true
+            }else {
+                self?.searchView.isHidden = true
+                self?.settingView.isHidden = false
+            }
+        }.disposed(by: disposeBag)
 
+        output.searchList.bind(to: searchView.collectionView.rx.items(cellIdentifier: "GifCell", cellType: GifCollectionViewCell.self)) {row, gif, cell in
+            if let url = gif.images?.preview?.url{
+                cell.setConfig(urlString: url)
+                cell.prepareForReuse()
+            }
+        }.disposed(by: disposeBag)
+        
+        
+    }
+    
+
+}
+
+
+extension SearchViewController: SearchDataProtocol {
+    func getDataCount() -> Int {
+        return searchViewModel.getDataCount()
+    }
+    
+    func getGif(index: Int) -> Gif {
+        return searchViewModel.getGif(index: index)
+    }
+    
+    func searchMore() {
+        searchViewModel.searchMore()
+    }
+    
+    
 }

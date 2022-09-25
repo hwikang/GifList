@@ -85,6 +85,10 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController: UICollectionViewDelegate, DynamicHeightLayoutDelegate{
+    func numberOfColumns() -> Int {
+        return 2
+    }
+    
     func collectionView(
           _ collectionView: UICollectionView,
           sizeForPhotoAtIndexPath indexPath:IndexPath) -> CGSize {

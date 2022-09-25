@@ -48,7 +48,6 @@ class HomeViewModel {
         guard let image = dataSource[index].images?.preview,
               let width = image.width,
               let height = image.height else { return .zero}
-        
         return CGSize(width: width, height: height)
     }
   

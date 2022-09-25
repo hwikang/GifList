@@ -8,16 +8,18 @@
 import UIKit
 
 protocol DynamicHeightLayoutDelegate: AnyObject {
-  func collectionView(
+    func collectionView(
     _ collectionView: UICollectionView,
     sizeForPhotoAtIndexPath indexPath: IndexPath) -> CGSize
+    
+    func numberOfColumns() -> Int
 }
 
 
 class DynamicHeightCollectionViewFlowLayout: UICollectionViewFlowLayout {
     var delegate : DynamicHeightLayoutDelegate?
     
-    private let numberOfColumns = 2
+//    private let numberOfColumns = 3
     private let collectionViewSpacing: CGFloat = ComponentSize.collectionViewSpacing
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentHeight: CGFloat = 0
@@ -34,9 +36,13 @@ class DynamicHeightCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func prepare() {
-        guard let collectionView = collectionView
+        guard let collectionView = collectionView,
+              let numberOfColumns = delegate?.numberOfColumns()
                 ,collectionView.numberOfItems(inSection: 0) != cache.count
         else { return }
+        
+        
+        
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
         var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)

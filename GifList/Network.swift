@@ -35,7 +35,7 @@ class Network {
          
     }
     
-    static func search(_ text: String, offset: Int) async throws -> [Gif] {
+    static func search(text: String, offset: Int) async throws -> [Gif] {
         guard let url = URL(string: "https://api.giphy.com/v1/gifs/search?api_key=\(APIKEY)&q=\(text)&offset=\(offset)") else {
             throw NetworkError.invalidURL }
 

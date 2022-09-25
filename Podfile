@@ -10,6 +10,8 @@ target 'GifList' do
   pod "RxSwift"
   pod "RxCocoa"
   pod "SnapKit"
+  pod 'DLRadioButton', '~> 1.4'
+
   target 'GifListTests' do
     inherit! :search_paths
     # Pods for testing
