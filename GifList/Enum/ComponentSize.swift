@@ -14,4 +14,10 @@ struct ComponentSize {
     static let searchTextFieldPadding:CGFloat = 10
     static let searchTextFieldClearButtonWidth:CGFloat = 30
     static let searchTextFieldIconWidth:CGFloat = 20
+    static let searchViewSegmentControlWidth: CGFloat = 160
+    static let searchViewSegmentControlHeight: CGFloat = 40
+    static let searchViewTopPadding: CGFloat = 20
+    static let searchViewLeftPadding: CGFloat = 10
+    static let searchViewRightPadding: CGFloat = -10
+    
 }

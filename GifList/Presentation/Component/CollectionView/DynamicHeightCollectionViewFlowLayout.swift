@@ -38,11 +38,9 @@ class DynamicHeightCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func prepare() {
         guard let collectionView = collectionView,
               let numberOfColumns = delegate?.numberOfColumns()
-                ,collectionView.numberOfItems(inSection: 0) != cache.count
+//                ,collectionView.numberOfItems(inSection: 0) != cache.count
         else { return }
-        
-        
-        
+                
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
         var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)

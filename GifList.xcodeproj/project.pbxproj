@@ -34,6 +34,7 @@
 		BF1E8D2B28DB125200A27DA0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8D2A28DB125200A27DA0 /* SearchView.swift */; };
 		BF1E8D2D28DB128000A27DA0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8D2C28DB128000A27DA0 /* SettingView.swift */; };
 		BF1E8D3228DB1BED00A27DA0 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8D3128DB1BED00A27DA0 /* SearchTextField.swift */; };
+		BF1E8D3828E1D82600A27DA0 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1E8D3728E1D82600A27DA0 /* DynamicHeightCollectionView.swift */; };
 		C5C23E053DF1532402D47151 /* Pods_GifList_GifListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB6298D2F6F53651AF0536B /* Pods_GifList_GifListUITests.framework */; };
 		CD30A3BFE8453D8BF2C16C9A /* Pods_GifListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101B79CA8701AF705DEA0180 /* Pods_GifListTests.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		BF1E8D2A28DB125200A27DA0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BF1E8D2C28DB128000A27DA0 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		BF1E8D3128DB1BED00A27DA0 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		BF1E8D3728E1D82600A27DA0 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		F6BABE3201B3600C7F107804 /* Pods-GifList-GifListUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GifList-GifListUITests.release.xcconfig"; path = "Target Support Files/Pods-GifList-GifListUITests/Pods-GifList-GifListUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +229,7 @@
 			children = (
 				BF1E8D0A28D8A48600A27DA0 /* DynamicHeightCollectionViewFlowLayout.swift */,
 				BF1E8D0B28D8A48600A27DA0 /* GifCollectionViewCell.swift */,
+				BF1E8D3728E1D82600A27DA0 /* DynamicHeightCollectionView.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				BF1E8D1D28D8A48600A27DA0 /* NetworkError.swift in Sources */,
 				BF1E8D3228DB1BED00A27DA0 /* SearchTextField.swift in Sources */,
 				BF1E8D1F28D8A48600A27DA0 /* Constant.swift in Sources */,
+				BF1E8D3828E1D82600A27DA0 /* DynamicHeightCollectionView.swift in Sources */,
 				BF1E8CD928D8A2AE00A27DA0 /* SceneDelegate.swift in Sources */,
 				BF1E8D2128D8A48600A27DA0 /* HomeViewController.swift in Sources */,
 				BF1E8D1B28D8A48600A27DA0 /* Strings.swift in Sources */,

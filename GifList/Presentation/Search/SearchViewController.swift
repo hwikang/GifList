@@ -39,7 +39,6 @@ class SearchViewController: UIViewController {
     
     lazy var settingView: SettingView = {
         let view = SettingView()
-        view.backgroundColor = .blue
         return view
     }()
     
@@ -64,17 +63,17 @@ class SearchViewController: UIViewController {
         segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
-            make.width.equalTo(160)
-            make.height.equalTo(40)
+            make.width.equalTo(ComponentSize.searchViewSegmentControlWidth)
+            make.height.equalTo(ComponentSize.searchViewSegmentControlHeight)
         }
         setContentViewConstraint(view: searchView)
         setContentViewConstraint(view: settingView)
     }
     private func setContentViewConstraint(view: UIView) {
         view.snp.makeConstraints { make in
-            make.top.equalTo(segmentedControl.snp.bottom).offset(20)
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
+            make.top.equalTo(segmentedControl.snp.bottom).offset(ComponentSize.searchViewTopPadding)
+            make.left.equalTo(ComponentSize.searchViewLeftPadding)
+            make.right.equalTo(ComponentSize.searchViewRightPadding)
             make.bottom.equalToSuperview()
         }
     }
@@ -85,12 +84,16 @@ class SearchViewController: UIViewController {
                 self?.searchText.accept(text)
             }
         }.disposed(by: disposeBag)
+        
+        settingView.numberOfColumnsObservable().bind { [weak self] numberOfColumns in
+            guard let self = self else { return }
+            self.searchView.setColumnCount(numberOfColumns)
+            self.searchView.collectionView.reloadData()
+        }.disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
         let input = SearchViewModel.Input(segmentedControlIndex: self.segmentedControl.rx.selectedSegmentIndex.asDriver(),searchText: searchText.asDriver(onErrorJustReturn: ""))
-        
-        
       
         let output = searchViewModel.transform(input: input)
         output.segmentIndex.bind {[weak self] index in

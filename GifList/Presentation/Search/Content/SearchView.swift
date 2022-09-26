@@ -16,11 +16,11 @@ protocol SearchDataProtocol {
 
 class SearchView: UIView {
     private let disposeBag = DisposeBag()
-
+    private var columnCount = 2
     
     lazy var textField: SearchTextField = {
         let textField = SearchTextField()
-        textField.backgroundColor = .lightGray
+        textField.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1)
         return textField
     }()
     
@@ -30,8 +30,6 @@ class SearchView: UIView {
         layout.minimumLineSpacing = ComponentSize.collectionViewSpacing
         layout.minimumInteritemSpacing = ComponentSize.collectionViewSpacing
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .red
-//        collectionView.collectionViewLayout.
         return collectionView
     }()
     public var searchDataDelegate: SearchDataProtocol?
@@ -86,6 +84,11 @@ class SearchView: UIView {
                 self.searchDataDelegate?.searchMore()
             }.disposed(by: disposeBag)
     }
+    
+    //MARK: Public function
+    public func setColumnCount(_ count: Int) {
+        self.columnCount = count
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -94,7 +97,7 @@ class SearchView: UIView {
 
 extension SearchView: UICollectionViewDelegate, DynamicHeightLayoutDelegate {
     func numberOfColumns() -> Int {
-        return 3
+        return columnCount
     }
     
     func collectionView(_ collectionView: UICollectionView, sizeForPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
